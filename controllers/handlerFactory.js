@@ -1,6 +1,13 @@
-const catchASync=require('../utils/catchASync')
+// const catchASync=require('../utils/catchASync')
 const AppError=require('../utils/appError')
 const APIFeatures=require('../utils/apiFeatures')
+
+
+const catchAsync = fn=>{
+  return (req,res,next)=>{
+      fn(req,res,next).catch(next) 
+  }
+}
 
   exports.deleteOne = Model=>  catchASync(async (req, res,next) => {
 

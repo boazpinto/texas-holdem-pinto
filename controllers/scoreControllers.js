@@ -1,10 +1,16 @@
 const Player=require('../models/playerModel');
 const Score=require('../models/scoreModel');
-const catchASync=require('../utils/catchASync');
+// const catchASync=require('../utils/catchASync');
 const AppError=require('../utils/appError');
 const factory=require('./handlerFactory');
 
 //FUNCTIONS
+const catchAsync = fn=>{
+  return (req,res,next)=>{
+      fn(req,res,next).catch(next) 
+  }
+}
+
 
 exports.getAllScores = factory.getAll(Score);
 exports.getSpecificScore =factory.getOne(Score);

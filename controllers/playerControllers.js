@@ -2,10 +2,16 @@
 const multer=require('multer');
 const sharp=require('sharp');
 const Player=require('../models/playerModel');
-const catchASync=require('../utils/catchASync');
+// const catchASync=require('../utils/catchASync');
 const AppError=require('../utils/appError');
 const factory=require('./handlerFactory');
 
+
+const catchAsync = fn=>{
+  return (req,res,next)=>{
+      fn(req,res,next).catch(next) 
+  }
+}
 
 const multerStorage=multer.memoryStorage();
 

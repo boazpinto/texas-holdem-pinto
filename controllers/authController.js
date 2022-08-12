@@ -2,9 +2,15 @@ const crypto = require('crypto');
 const {promisify} =require('util');
 const jwt=require('jsonwebtoken');
 const Player=require('../models/playerModel');
-const catchASync=require('../utils/catchASync');
+// const catchASync=require('../utils/catchASync');
 const AppError=require('../utils/appError');
 
+
+const catchAsync = fn=>{
+    return (req,res,next)=>{
+        fn(req,res,next).catch(next) 
+    }
+  }
 
 const cookieOptions={
     expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES_IN*24*60*60*1000),
