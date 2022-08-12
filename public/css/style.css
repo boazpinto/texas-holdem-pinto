@@ -301,7 +301,7 @@ body {
 .header {
   background-color: #444;
   padding: 0 5rem;
-  height: 8rem;
+  /* height: 8rem; */
   position: relative;
   z-index: 100;
   display: -webkit-box;
@@ -769,9 +769,9 @@ body {
   display: flex;
 }
 .user-view__menu {
-  -webkit-box-flex: 32rem;
+  -webkit-box-flexalign-items: 32rem;
   -ms-flex: 32rem 0 0px;
-  flex: 32rem 0 0;
+  /* flex: 32rem 0 0; */
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -872,6 +872,7 @@ body {
   }
 }
 .nav--tours {
+  align-items: left;
   -webkit-box-flex: 0;
   -ms-flex: 0 1 40%;
   flex: 0 1 40%;
@@ -1071,14 +1072,16 @@ body {
 }
 
 .card-container {
-  /* max-width: 120rem; */
-  margin: 0 auto;
+  max-width: 120rem;
+  margin-bottom: 10 auto;
+  padding: 10px;
   /* display: grid; */
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
 }
 
 .card {
+  margin-bottom: 10 auto;
   width:100%;
   border-radius: 3px;
   overflow: hidden;
