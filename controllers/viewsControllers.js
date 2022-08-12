@@ -3,7 +3,7 @@ const Player = require('../models/playerModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const scoreControllers=require('../controllers/scoreControllers')
-const catchASync=require('../utils/catchASync');
+
 
 
 exports.alerts = (req, res, next) => {
