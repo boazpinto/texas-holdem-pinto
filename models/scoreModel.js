@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const validator=require('validator');
 const AppError=require('../utils/appError');
 const Player=require('../models/playerModel')
-const catchASync=require('../utils/catchASync')
+// const catchASync=require('../utils/catchASync')
 
+
+const catchAsync = fn=>{
+  return (req,res,next)=>{
+      fn(req,res,next).catch(next) 
+  }
+}
 
 const scoreSchema = new mongoose.Schema({
     quarter: {
