@@ -2,7 +2,6 @@ const crypto = require('crypto');
 const {promisify} =require('util');
 const jwt=require('jsonwebtoken');
 const Player=require('../models/playerModel');
-// const catchASync=require('../utils/catchASync');
 const AppError=require('../utils/appError');
 
 

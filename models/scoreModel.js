@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const validator=require('validator');
 const AppError=require('../utils/appError');
 const Player=require('../models/playerModel')
-// const catchASync=require('../utils/catchASync')
 
 
 const scoreSchema = new mongoose.Schema({

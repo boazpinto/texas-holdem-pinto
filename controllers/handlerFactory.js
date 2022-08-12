@@ -1,4 +1,3 @@
-// const catchASync=require('../utils/catchASync')
 const AppError=require('../utils/appError')
 const APIFeatures=require('../utils/apiFeatures')
 
@@ -9,7 +8,7 @@ const catchAsync = fn=>{
   }
 }
 
-  exports.deleteOne = Model=>  catchASync(async (req, res,next) => {
+  exports.deleteOne = Model=>  catchAsync(async (req, res,next) => {
 
     const {id} = req.params ;
     const doc=await Model.findByIdAndDelete(id);
@@ -22,7 +21,7 @@ const catchAsync = fn=>{
       })
 });
 
-exports.updateOne= Model => catchASync(async (req,res,next)=>{
+exports.updateOne= Model => catchAsync(async (req,res,next)=>{
     const {id} = req.params ;
     if (req.file) req.body.photo=req.file.filename;
     
@@ -33,7 +32,7 @@ exports.updateOne= Model => catchASync(async (req,res,next)=>{
        data:{doc} 
       })
 })
-exports.addOne =Model=> catchASync(async (req, res,next) => {
+exports.addOne =Model=> catchAsync(async (req, res,next) => {
     console.log("post scores")
     console.log(req.body)
     if (req.body.quarter && !req.body.player) req.body.player=req.user._id;
@@ -46,7 +45,7 @@ exports.addOne =Model=> catchASync(async (req, res,next) => {
     })
   });
 
-  exports.getOne = (Model,populateOptions)=> catchASync(async (req, res,next) => {
+  exports.getOne = (Model,populateOptions)=> catchAsync(async (req, res,next) => {
     const {id} = req.params ;
     let query =  Model.findById(id);
     if (populateOptions) query=query.populate(populateOptions)
@@ -59,7 +58,7 @@ exports.addOne =Model=> catchASync(async (req, res,next) => {
       });
 });
 
-exports.getAll = Model=>catchASync( async (req, res,next) => {
+exports.getAll = Model=>catchAsync( async (req, res,next) => {
     //EXECUTE QURY
     const features=new APIFeatures(Model.find(),req.query).filter().sort().limitFields().paginate();
     const documents= await features.query;
