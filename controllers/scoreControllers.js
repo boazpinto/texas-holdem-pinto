@@ -18,7 +18,7 @@ exports.updateScore = factory.updateOne(Score);
 exports.deleteScore = factory.deleteOne(Score);
 exports.addScore = factory.addOne(Score);
 
-exports.getTotalsForQuarter = catchASync(async (req, res, next) => {
+exports.getTotalsForQuarter = catchAsync(async (req, res, next) => {
     const {quarter} = req.params;
  
     const scores = await Score.aggregate([
@@ -49,7 +49,7 @@ exports.getTotalsForQuarter = catchASync(async (req, res, next) => {
         }
       })
     })
-    exports.getAllQuarters = catchASync(async (req, res, next) => {
+    exports.getAllQuarters = catchAsync(async (req, res, next) => {
 
         const scores = await Score.aggregate([
             {

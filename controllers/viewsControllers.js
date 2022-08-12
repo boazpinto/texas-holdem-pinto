@@ -63,7 +63,7 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser
   });
 });
-exports.getAllQuarters= catchASync(async (req, res, next) => {
+exports.getAllQuarters= catchAsync(async (req, res, next) => {
     const quarters=await Score.aggregate([
 
         {
@@ -76,7 +76,7 @@ exports.getAllQuarters= catchASync(async (req, res, next) => {
       req.quarters=quarters;
       next()
     })
-exports.getQuarterGames= catchASync(async (req, res, next) => {
+exports.getQuarterGames= catchAsync(async (req, res, next) => {
     console.log(req.params)
     const {quarter}=req.params;
     console.log("quarter:",quarter)
@@ -94,7 +94,7 @@ exports.getQuarterGames= catchASync(async (req, res, next) => {
       console.log(games)
       next()
     })
-exports.getGameSumScores=catchASync(async (req, res, next) => {
+exports.getGameSumScores=catchAsync(async (req, res, next) => {
     const {games}=req;
     await Promise.all(
         games.map(async (game)=>{
@@ -118,7 +118,7 @@ exports.getGameSumScores=catchASync(async (req, res, next) => {
     console.log("games0:",games)
     next();
     })
-exports.getAllSumScores= catchASync(async (req, res, next) => {
+exports.getAllSumScores= catchAsync(async (req, res, next) => {
     const {quarters}=req;
     await Promise.all(
         quarters.map(async (quarter)=>{
@@ -141,7 +141,7 @@ exports.getAllSumScores= catchASync(async (req, res, next) => {
     next();
     })
 
-exports.addNamesGames = catchASync(async (req, res, next) => {
+exports.addNamesGames = catchAsync(async (req, res, next) => {
         const {games}=req;
         await Promise.all(
                 games.map(async (game)=>{
@@ -158,7 +158,7 @@ exports.addNamesGames = catchASync(async (req, res, next) => {
             games        
         })
     })
-exports.addNames = catchASync(async (req, res, next) => {
+exports.addNames = catchAsync(async (req, res, next) => {
     const {quarters}=req;
     await Promise.all(
             quarters.map(async (quarter)=>{
@@ -175,7 +175,7 @@ exports.addNames = catchASync(async (req, res, next) => {
         quarters          
     })
 })
-exports.getGames= catchASync(async (req, res, next) => {
+exports.getGames= catchAsync(async (req, res, next) => {
     const {date}=req.params
     const scores=await Score.find({date})
     // console.log(`these are the scores: ${scores[1]}`);
@@ -186,7 +186,7 @@ exports.getGames= catchASync(async (req, res, next) => {
     })
 })
 
-exports.postScores=catchASync(async (req, res, next) => {
+exports.postScores=catchAsync(async (req, res, next) => {
   res.status(200).render('postScores', {
     title: 'Post Your scores'
   });

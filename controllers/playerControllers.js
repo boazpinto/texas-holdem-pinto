@@ -38,7 +38,7 @@ const upload=multer({
 
   exports.uploadUserPhoto=upload.single('photo');
 
-exports.resizeUserPhoto=catchASync( async (req,res,next)=>{
+exports.resizeUserPhoto=catchAsync( async (req,res,next)=>{
   if (!req.file) return next();
   req.file.filename=`user-${req.user._id}-${Date.now()}.jpeg`
   await sharp(req.file.buffer)
@@ -54,7 +54,7 @@ exports.resizeUserPhoto=catchASync( async (req,res,next)=>{
     next();
   }
   
-  exports.updateMe=catchASync(async (req,res,next)=>{
+  exports.updateMe=catchAsync(async (req,res,next)=>{
     //check if user tries to update password
     if (req.body.password || req.body.passwordConfirm) 
       return next(new AppError('This route is for updatind data only, for changig passwords please use/updateMyPassword',400));
@@ -71,7 +71,7 @@ exports.resizeUserPhoto=catchASync( async (req,res,next)=>{
       }
     })
   })
-  exports.deleteMe=catchASync(async (req,res,next)=>{
+  exports.deleteMe=catchAsync(async (req,res,next)=>{
     await Player.findByIdAndUpdate(req.user._id,{active:false});
     //sending res
     res.status(204).json({

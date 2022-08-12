@@ -41,7 +41,7 @@ const createSendToken=(user,statusCode,res)=>{
 }
 
 
-exports.signup = catchASync(async (req,res,next)=>{
+exports.signup = catchAsync(async (req,res,next)=>{
     console.log(req.body)
     const newUser=await Player.create({
         name:req.body.name,
@@ -71,7 +71,7 @@ exports.logout = (req, res) => {
   };
   
 
-exports.login= catchASync(async (req,res,next)=>{
+exports.login= catchAsync(async (req,res,next)=>{
     const {email,password}=req.body;
     if (!email || !password){
         return next(new AppError('Email and Password are required to login!!!',400));
@@ -109,7 +109,7 @@ exports.isLogedIn= async(req,res,next)=>{
 }
 
 
-exports.protect= catchASync(async(req,res,next)=>{
+exports.protect= catchAsync(async(req,res,next)=>{
     console.log('protect')
     let token;
     //check if token sent in authorization header and than verify the token
@@ -139,7 +139,7 @@ exports.restrictTo=(...roles)=> (req,res,next)=>{
     next();
 }
 
-exports.forgotPassword= catchASync(async(req,res,next)=>{
+exports.forgotPassword= catchAsync(async(req,res,next)=>{
  
     //get the email and check that it exists
  
@@ -171,7 +171,7 @@ exports.forgotPassword= catchASync(async(req,res,next)=>{
 
 })
 
-exports.resetPassword=catchASync(async (req,res,next)=>{
+exports.resetPassword=catchAsync(async (req,res,next)=>{
     //get temp token and new password and check if temp token exists
     const {token}=req.params;
     const {password,passwordConfirm}=req.body;
@@ -190,7 +190,7 @@ exports.resetPassword=catchASync(async (req,res,next)=>{
     createSendToken(user,200,res);
 })
 
-exports.updatePassword=catchASync(async (req,res,next)=>{
+exports.updatePassword=catchAsync(async (req,res,next)=>{
 
     //get user's old password,new password, new password cofirmed
     const {password,newPassword,newPasswordConfirm}=req.body;
