@@ -1,0 +1,17 @@
+.card
+  .card__header
+    .card__picture
+      .card__picture-overlay &nbsp;
+      img.card__picture-img(src=`/img/texas.png`, alt=`fsdfgsdfg`)
+    h3.heading-tertirary
+      
+  .card__details
+    h4.card__sub-heading=`Game : ${game._id}`
+    p.card__text=title
+
+    each score in game.scores
+      include _cardPlayers
+  
+  .card__footer
+   
+    a.btn.btn--green.btn--small(href=`/game/${game._id}`) Details

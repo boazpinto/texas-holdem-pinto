@@ -1,0 +1,17 @@
+.card
+  .card__header
+    .card__picture
+      .card__picture-overlay &nbsp;
+      img.card__picture-img(src=`/img/texas.png`, alt=`fsdfgsdfg`)
+    h3.heading-tertirary
+      
+  .card__details
+    h4.card__sub-heading=`Quarter : ${quarter._id}`
+    p.card__text=title
+
+    each score in quarter.scores
+      include _cardPlayers
+  
+  .card__footer
+   
+    a.btn.btn--green.btn--small(href=`/${quarter._id}`) Details

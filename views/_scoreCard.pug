@@ -1,0 +1,79 @@
+.card
+  .card__header
+    .card__picture
+      .card__picture-overlay &nbsp;
+      img.card__picture-img(src=`/img/texas.png`, alt=`fsdfgsdfg`)
+    h3.heading-tertirary
+      
+  .card__details
+    h4.card__sub-heading=`${score.player.name}  ----    ${score.date}`
+    p.card__text='Start and End amounts'
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span=`$${score.startAmount}`
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span=`$${score.endAmount}`
+    p.card__text='Profit'
+        .card__data
+            svg.card__icon
+                
+            span=''
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span=`$${score.profit}`  
+    p.card__text='Coins'
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span='5000'
+        .card__data
+            svg.card__icon
+                
+            span=`${score.c5000} coins`       
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span='1000'
+        .card__data
+            svg.card__icon
+                
+            span=`${score.c1000} coins`            
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span='500'
+        .card__data
+            svg.card__icon
+                
+            span=`${score.c500} coins`         
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span='100'
+        .card__data
+            svg.card__icon
+                
+            span=`${score.c100} coins`         
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span='50'
+        .card__data
+            svg.card__icon
+                
+            span=`${score.c50} coins`         
+        .card__data
+            svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-dollar-sign')
+            span='25'
+        .card__data
+            svg.card__icon
+                
+            span=`${score.c25} coins`         
+  .card__footer
+   
+    a.btn.btn--green.btn--small(href=`/`) Back to Quarters

@@ -1,0 +1,75 @@
+extends base
+mixin liBox (label,href,icon,active) 
+    li(class=`${active ? 'side-nav--active':''}`)
+        a(href=`/${href}`)
+            svg
+              use(xlink:href=`/img/icons.svg#icon-${icon}`)
+            | #{label}
+
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +liBox('Post Scores','/me/scores','Post Scores',true)
+                -if (user.role==='admin')
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            +liBox('Manage Scores','#','map',false)
+                            +liBox('Manage users','#','users',false)
+            .user-view__content
+                .user-view__form-container
+
+
+                .line &nbsp;
+                .user-view__form-container
+                    h2.heading-secondary.ma-bt-md Scores Details
+                    form.form.form-post-scores
+                        .form__group
+                            label.form__label(for='name') Name
+                            input#name.form__input(type='text', value=`${user.name}`, required,name='name')
+                        .form__group.ma-bt-md
+                            label.form__label(for='email') Email address
+                            input#email.form__input(type='email', value=`${user.email}`, required,name='email')
+                        .form__group.ma-bt-md
+                            label.form__label(for='quarter') Quarter
+                            input#quarter.form__input(type='text', value=`${new Date().getFullYear()-2000}-${Math.floor(new Date().getMonth() / 3 + 1)}`, required,name='quarter')
+                        .form__group.ma-bt-md
+                            label.form__label(for='date') Date
+                            input#date.form__input(type='text', value=`${new Date().toISOString().split('T')[0]}`, required,name='quarter')                    
+                        .form__group
+                            label.form__label(for='startAmount') Starting amount
+                            input#starting-amount.form__input(type='text', required)
+                        .form__group
+                            label.form__label(for='endAmount') End amount
+                            input#end-amount.form__input(type='text')
+                        .form__group
+                            label.form__label(for='profit') Profit
+                            input#profit.form__input(type='text')
+                        .form__group
+                            img(src='/img/5000.jpg' width="80px" alt='5000 dollars')
+                            label.form__label(for='c5000') $5000 Chip                                
+                            input#c5000.form__input(type='text')
+                        .form__group
+                            img(src='/img/1000.jpg' width="80px" alt='1000 dollars')
+                            label.form__label(for='c1000') $1000 Chip
+                            input#c1000.form__input(type='text')
+                        .form__group
+                            img(src='/img/500.jpg' width="80px" alt='500 dollars')
+                            label.form__label(for='c500') $500 Chip
+                            input#c500.form__input(type='text')
+                        .form__group
+                            img(src='/img/100.jpg' width="80px" alt='100 dollars')
+                            label.form__label(for='c100') $100 Chip
+                            input#c100.form__input(type='text')
+                        .form__group
+                            img(src='/img/50.jpg' width="80px" alt='50 dollars')
+                            label.form__label(for='c50') $50 Chip
+                            input#c50.form__input(type='text')
+                        .form__group
+                            img(src='/img/25.jpg' width="80px" alt='25 dollars')
+                            label.form__label(for='c25') $25 Chip
+                            input#c25.form__input(type='text')
+                        .form__group.right
+                            button.postScores.btn.btn--small.btn--green Send Scores
