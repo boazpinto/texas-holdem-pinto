@@ -95,17 +95,17 @@ if (calculateBtn) {
     var startAmount=parseFloat(document.getElementById('starting-amount').value);
     if (!startAmount) startAmount=0
     var c5000 = document.getElementById('c5000').value;
-    if (!c5000) c5000=0
+    if (c5000=='') c5000=0
     var c1000 = document.getElementById('c1000').value;
-    if (!c1000) c1000=0
+    if (c1000=='') c1000=0
     var c500 = document.getElementById('c500').value;
-    if (!c500) c500=0
+    if (c500=='') c500=0
     var c100 = document.getElementById('c100').value;
-    if (!c100) c100=0
+    if (c100=='') c100=0
     var c50 = document.getElementById('c50').value;
-    if (!c1000) c1000=0
+    if (c50=='') c50=0
     var c25 = document.getElementById('c25').value;  
-    if (!c50) c50=0  
+    if (c25=='') c25=0  
     var endAmount=parseFloat(c5000)*5000+parseFloat(c1000)*1000+parseFloat(c500)*500+parseFloat(c100)*100+parseFloat(c50)*50+parseFloat(c25)*25
     document.getElementById('end-amount').value=endAmount
     document.getElementById('profit').value=endAmount-parseFloat(startAmount)
