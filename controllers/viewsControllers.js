@@ -77,9 +77,7 @@ exports.getAllQuarters= catchAsync(async (req, res, next) => {
       next()
     })
 exports.getQuarterGames= catchAsync(async (req, res, next) => {
-    console.log(req.params)
     const {quarter}=req.params;
-    console.log("quarter:",quarter)
     const games=await Score.aggregate([
         {
             $match:{quarter}
@@ -91,7 +89,6 @@ exports.getQuarterGames= catchAsync(async (req, res, next) => {
         }
       ]).sort('-_id');
       req.games=games;
-      console.log(games)
       next()
     })
 exports.getGameSumScores=catchAsync(async (req, res, next) => {
@@ -115,7 +112,6 @@ exports.getGameSumScores=catchAsync(async (req, res, next) => {
         })
     )
     req.games=games;
-    console.log("games0:",games)
     next();
     })
 exports.getAllSumScores= catchAsync(async (req, res, next) => {
@@ -152,7 +148,15 @@ exports.addNamesGames = catchAsync(async (req, res, next) => {
                     )
                     })
         )   
-        console.log("games:",games)     
+        var gameSum=0
+        games.forEach(game => {
+          console.log(game)
+          game.scores.forEach(score => {
+            gameSum+=score.profit; 
+          })
+          game.scores.push({_id:'333',profit:gameSum,num:1,player:{name:"Total"}});
+          gameSum=0
+        });
         res.status(200).render('games',{
             title:'All Players',
             games        
@@ -178,8 +182,7 @@ exports.addNames = catchAsync(async (req, res, next) => {
 exports.getGames= catchAsync(async (req, res, next) => {
     const {date}=req.params
     const scores=await Score.find({date})
-    // console.log(`these are the scores: ${scores[1]}`);
-    // next()
+
     res.status(200).render('game',{
         title:'All Scores',
         scores          

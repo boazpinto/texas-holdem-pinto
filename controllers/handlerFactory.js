@@ -33,8 +33,7 @@ exports.updateOne= Model => catchAsync(async (req,res,next)=>{
       })
 })
 exports.addOne =Model=> catchAsync(async (req, res,next) => {
-    console.log("post scores")
-    console.log(req.body)
+
     if (req.body.quarter && !req.body.player) req.body.player=req.user._id;
     const doc=await Model.create(req.body);
     res.status(201).json({

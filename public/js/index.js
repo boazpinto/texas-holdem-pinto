@@ -48,7 +48,6 @@ const login= async (email,password)=>{
                             password
                         })
         })
-        console.log(res)
         if (res.statusText==='OK') {
             showAlert('success','Logged in successfuly')
             window.setTimeout(()=>{
@@ -69,7 +68,6 @@ export const logout = async () => {
       if ((res.statusText==='OK')) {
         location.reload(true)};
     } catch (err) {
-      console.log(err.response);
       showAlert('error', 'Error logging out! Try again.');
     }
   };
@@ -81,22 +79,41 @@ const saveSettingsForm=document.querySelector('.form-user-data');
 const savePasswordForm=document.querySelector('.form-user-password');
 const updatePasswordBtn=document.querySelector('.updatePassword');
 const postScoresBtn=document.querySelector('.postScores')
+const calculateBtn=document.querySelector('.calculate')
 
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     e.preventDefault();
-    console.log('email')
     login(email, password);
   });
 }
-
+if (calculateBtn) {
+  calculateBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    var startAmount=parseFloat(document.getElementById('starting-amount').value);
+    if (!startAmount) startAmount=0
+    var c5000 = document.getElementById('c5000').value;
+    if (!c5000) c5000=0
+    var c1000 = document.getElementById('c1000').value;
+    if (!c1000) c1000=0
+    var c500 = document.getElementById('c500').value;
+    if (!c500) c500=0
+    var c100 = document.getElementById('c100').value;
+    if (!c100) c100=0
+    var c50 = document.getElementById('c50').value;
+    if (!c1000) c1000=0
+    var c25 = document.getElementById('c25').value;  
+    if (!c50) c50=0  
+    var endAmount=parseFloat(c5000)*5000+parseFloat(c1000)*1000+parseFloat(c500)*500+parseFloat(c100)*100+parseFloat(c50)*50+parseFloat(c25)*25
+    document.getElementById('end-amount').value=endAmount
+    document.getElementById('profit').value=endAmount-parseFloat(startAmount)
+  })
+}
 if (postScoresForm) {
-  console.log("postscoresForm")
   postScoresForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log("postscores")
     const startAmount = document.getElementById('starting-amount').value;
     const endAmount = document.getElementById('end-amount').value;
     const profit = document.getElementById('profit').value;
@@ -122,14 +139,13 @@ if (postScoresForm) {
       c25,
       profit
     }
-    console.log(data)
     try {
       const res = await fetch('/api/v1/score',{
         method: 'POST',
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
       });
-      console.log(res)
+
       if ((res.statusText==='Created')) {
         showAlert('success', 'Your scores were posted.')
       }
@@ -137,7 +153,6 @@ if (postScoresForm) {
           showAlert('error',res.statusText)
         }
     } catch (err) {
-      console.log(err.response);
       showAlert('error', 'Error Sending scores!');
     }
 

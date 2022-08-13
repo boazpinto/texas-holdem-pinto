@@ -42,7 +42,6 @@ const createSendToken=(user,statusCode,res)=>{
 
 
 exports.signup = catchAsync(async (req,res,next)=>{
-    console.log(req.body)
     const newUser=await Player.create({
         name:req.body.name,
         email:req.body.email,
@@ -55,8 +54,7 @@ exports.signup = catchAsync(async (req,res,next)=>{
     });
 
     const url=`${req.protocol}://${req.get('host')}/me`;
-    console.log(newUser);
-    console.log(url);
+  
     await new Email(newUser,url).sendWelcome();
     createSendToken(newUser,201,res);
 
@@ -77,7 +75,6 @@ exports.login= catchAsync(async (req,res,next)=>{
         return next(new AppError('Email and Password are required to login!!!',400));
     }
     const user=await Player.findOne({email}).select('+password');
-
     if (!user || !await user.correctPassword(password,user.password)) {
          return next(new AppError('Email or Password are Incorrect!!!',401));
     }
@@ -100,7 +97,6 @@ exports.isLogedIn= async(req,res,next)=>{
 
             //there is a loged in user
             res.locals.user=user;
-            console.log("logged in")
             next();
         } else return next();
     } catch (err) {
@@ -110,7 +106,7 @@ exports.isLogedIn= async(req,res,next)=>{
 
 
 exports.protect= catchAsync(async(req,res,next)=>{
-    console.log('protect')
+
     let token;
     //check if token sent in authorization header and than verify the token
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
@@ -130,7 +126,6 @@ exports.protect= catchAsync(async(req,res,next)=>{
     //token and user have been verified and access is grated to continue
     req.user=user;
     res.locals.user=user;
-    console.log(req.user)
     next();
 })
 

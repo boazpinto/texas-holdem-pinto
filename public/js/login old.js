@@ -3,7 +3,7 @@ import axios from 'axios';
 import { showAlert } from './alerts'
 
 export const login= async (email,password)=>{
-  console.log(req)
+
     try {
         const res= await axios({
                         method:'POST',
@@ -13,7 +13,7 @@ export const login= async (email,password)=>{
                             password
                         }
         })
-        console.log(res)
+
         if (res.data.status==='Success') {
             showAlert('success','Logged in successfuly')
             window.setTimeout(()=>{
@@ -34,7 +34,7 @@ export const logout = async () => {
       if ((res.data.status = 'success')) {
         location.reload(true)};
     } catch (err) {
-      console.log(err.response);
+
       showAlert('error', 'Error logging out! Try again.');
     }
   };
