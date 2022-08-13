@@ -106,6 +106,14 @@ if (calculateBtn) {
     if (c50=='') c50=0
     var c25 = document.getElementById('c25').value;  
     if (c25=='') c25=0  
+    document.getElementById('c5000').value=c5000
+    document.getElementById('c1000').value=c1000
+    document.getElementById('c500').value=c500
+    document.getElementById('c100').value=c100
+    document.getElementById('c50').value=c50
+    document.getElementById('c25').value=c25
+    document.getElementById('starting-amount').value=startAmount
+
     var endAmount=parseFloat(c5000)*5000+parseFloat(c1000)*1000+parseFloat(c500)*500+parseFloat(c100)*100+parseFloat(c50)*50+parseFloat(c25)*25
     document.getElementById('end-amount').value=endAmount
     document.getElementById('profit').value=endAmount-parseFloat(startAmount)
