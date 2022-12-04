@@ -93,7 +93,7 @@ if (calculateBtn) {
   calculateBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     var startAmount=parseFloat(document.getElementById('starting-amount').value);
-    if (!startAmount) startAmount=0
+    if (!startAmount || startAmount =='') startAmount=0
     var c5000 = document.getElementById('c5000').value;
     if (c5000=='') c5000=0
     var c1000 = document.getElementById('c1000').value;
@@ -122,9 +122,11 @@ if (calculateBtn) {
 if (postScoresForm) {
   postScoresForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const startAmount = document.getElementById('starting-amount').value;
-    const endAmount = document.getElementById('end-amount').value;
-    const profit = document.getElementById('profit').value;
+    var startAmount = document.getElementById('starting-amount').value;
+    if (!startAmount || startAmount =='') startAmount=0
+    var endAmount = document.getElementById('end-amount').value;
+    if (!endAmount || endAmount =='') endAmount=0
+    var profit = document.getElementById('profit').value;
     const c5000 = document.getElementById('c5000').value;
     const c1000 = document.getElementById('c1000').value;
     const c500 = document.getElementById('c500').value;
@@ -133,7 +135,7 @@ if (postScoresForm) {
     const c25 = document.getElementById('c25').value;
     const quarter = document.getElementById('quarter').value;
     const date = document.getElementById('date').value;
-    
+    if (!profit || profit =='') profit= parseFloat(endAmount)-parseFloat(startAmount)
     const data={
       quarter,
       date,
